@@ -1,0 +1,4 @@
+#Thu Apr 29 03:07:08 PDT 2021
+base.0=/Users/macminimm/Desktop/First/android/app/build/intermediates/dex/release/mergeDexRelease/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

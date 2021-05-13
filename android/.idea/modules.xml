@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/First.iml" filepath="$PROJECT_DIR$/.idea/modules/First.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/First.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/First.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/45631881/First.react-native-async-storage_async-storage.iml" filepath="$PROJECT_DIR$/.idea/modules/45631881/First.react-native-async-storage_async-storage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/171869413/First.react-native-community_checkbox.iml" filepath="$PROJECT_DIR$/.idea/modules/171869413/First.react-native-community_checkbox.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/400398085/First.react-native-community_masked-view.iml" filepath="$PROJECT_DIR$/.idea/modules/400398085/First.react-native-community_masked-view.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-556148366/First.react-native-gesture-handler.iml" filepath="$PROJECT_DIR$/.idea/modules/-556148366/First.react-native-gesture-handler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/661022420/First.react-native-image-picker.iml" filepath="$PROJECT_DIR$/.idea/modules/661022420/First.react-native-image-picker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1014946454/First.react-native-reanimated.iml" filepath="$PROJECT_DIR$/.idea/modules/-1014946454/First.react-native-reanimated.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1231266469/First.react-native-safe-area-context.iml" filepath="$PROJECT_DIR$/.idea/modules/-1231266469/First.react-native-safe-area-context.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1288658125/First.react-native-screens.iml" filepath="$PROJECT_DIR$/.idea/modules/-1288658125/First.react-native-screens.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2008677468/First.react-native-vector-icons.iml" filepath="$PROJECT_DIR$/.idea/modules/-2008677468/First.react-native-vector-icons.iml" />
+    </modules>
+  </component>
+</project>
