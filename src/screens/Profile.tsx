@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   View,
   Image,
   TextInput,
-  ScrollView,
   TouchableOpacity,
-  Button
+  Button,
+  Alert
 } from 'react-native';
 import styles from './style';
 import * as ImagePicker from 'react-native-image-picker';
@@ -29,7 +29,7 @@ class Profile extends React.Component {
       customButtons: [
         {
           name: 'customOptionKey',
-          title: 'Choose file from Custom Option',
+          title: 'Select Image',
         },
       ],
       storageOptions: {
@@ -39,12 +39,11 @@ class Profile extends React.Component {
     };
 
     ImagePicker.launchImageLibrary(options, res => {
-      console.log('Response = ', res);
+
 
       if (res.didCancel) {
-        console.log('User cancelled image picker');
+        Alert.alert('Cancelled');
       } else if (res.errorMessage) {
-        console.log('ImagePicker Error: ', res.errorMessage);
       } else {
         let source = res;
         this.setState({
@@ -61,120 +60,109 @@ class Profile extends React.Component {
       profileDetails.name2 = this.state.name2,
       profileDetails.date = this.state.date,
 
-    fetch('http://localhost:8090/profile/create', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(profileDetails),
-    })
-      .then(response => response.json())
-      .then(profileDetails => {
-        console.log('Success:', profileDetails);
+      fetch('http://localhost:8090/profile/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(profileDetails),
       })
-      .catch(error => {
-        const msg = this.fetchErrorMessage(error);
-      });
+        .then(response => response.json())
+        .then(profileDetails => {
+        })
+        .catch(error => {
+          const msg = this.fetchErrorMessage(error);
+        });
   };
 
   fetchErrorMessage(error) {
     if (
-      (error.response && error.response.status === TEXT.HTTP_ERROR_CODE) ||
-      (error.response && error.response.status === TEXT.SERVER_NOT_FOUND)
+      (error.response && error.response.status === 502) ||
+      (error.response && error.response.status === 500)
     ) {
-      return TEXT.REQ_FAILED;
+      return "error";
     } else if (
       error.response &&
-      error.response.status === TEXT.UNAUTHORIZED_ACCESS_CODE
+      error.response.status === 400
     ) {
-      return TEXT.UNAUTHORIZED_ACCESS_FOUND;
+      return "Access error";
     }
     return error.response && error.response.data
       ? error.response.data.error_description
-      : TEXT.NETWORK_ERROR;
+      : "check network";
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.imageContainer}>
-          <TouchableOpacity
-            style={styles.imageButton}
-            onPress={this.selectFile}>
-            {this.state.photo === null ? (
-              <Image
-                source={require('../../src/screens/proimg.png')}
-                style={styles.imageBox}
-                resizeMode="cover"
-              />
-            ) : (
-              <Image
-                source={{ uri: this.state.photo.uri }}
-                style={styles.imageBox}
-                resizeMode="cover"
-              />
-            )}
-          </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.image}
+          onPress={this.selectFile}>
+          {this.state.photo === null ? (
+            <Image
+              source={require('../../src/screens/proimg.png')}
+              style={styles.imageSquare}
+              resizeMode="cover"
+            />
+          ) : (
+            <Image
+              source={{ uri: this.state.photo.uri }}
+              style={styles.imageSquare}
+              resizeMode="cover"
+            />
+          )}
+        </TouchableOpacity>
+
+
+        <View style={styles.body}>
+          <TextInput
+            placeholder="First Name"
+            placeholderTextColor="#283747"
+            style={styles.inputText}
+            onChangeText={name => {
+              this.setState({ name: name }, () => { });
+            }}
+          />
         </View>
 
         <View style={styles.body}>
-          <ScrollView>
-            <View style={styles.action}>
-              <TextInput
-                placeholder="First Name"
-                placeholderTextColor="#283747"
-                style={styles.input}
-                onChangeText={name => {
-                  this.setState({ name: name }, () => { });
-                }}
-              />
-            </View>
-
-            <View style={styles.action}>
-              <TextInput
-                placeholder="Last Name"
-                placeholderTextColor="#283747"
-                style={styles.input}
-                onChangeText={name2 => {
-                  this.setState({ name2: name2 }, () => { });
-                }}
-              />
-            </View>
-            <View style={styles.action}>
-              <DatePicker
-                date={this.state.date}
-                mode="date"
-                placeholder="date-of-birth"
-                format="YYYY-MM-DD"
-                maxDate="2021-06-01"
-                style={{ width: 280 }}
-                customStyles={{
-                  dateIcon: {
-                    position: 'absolute',
-                    left: 0,
-                    top: 4,
-                    marginLeft: 0,
-                  },
-                  dateInput: {
-                    marginLeft: 36,
-                  },
-                }}
-                onDateChange={date => {
-                  this.setState({ date: date });
-                }} />
-            </View>
-
-            <Button
-              disabled={
-                (this.state.name && this.state.name2 && this.state.date) == ''
-                  ? true
-                  : false
-              }
-              onPress={this.onSubmit}
-              title="Submit"
-            />
-          </ScrollView>
+          <TextInput
+            placeholder="Last Name"
+            placeholderTextColor="#283747"
+            style={styles.inputText}
+            onChangeText={name2 => {
+              this.setState({ name2: name2 }, () => { });
+            }}
+          />
         </View>
+        <View style={styles.body}>
+          <DatePicker
+            date={this.state.date}
+            mode="date"
+            placeholder="date-of-birth"
+            format="YYYY-MM-DD"
+            maxDate="2021-06-01"
+            style={{ width: 280 }}
+            customStyles={{
+              dateIcon: {
+                position: 'absolute',
+                left: 0,
+                top: 4,
+                marginLeft: 0,
+              },
+              dateInput: {
+                marginLeft: 36,
+              },
+            }}
+            onDateChange={date => {
+              this.setState({ date: date });
+            }} />
+        </View>
+
+        <Button
+          onPress={this.onSubmit}
+          title="Submit"
+        />
       </View>
     );
   }
