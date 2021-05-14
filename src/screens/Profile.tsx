@@ -5,11 +5,14 @@ import {
   TextInput,
   TouchableOpacity,
   Button,
-  Alert
+  Alert,
+  Text
 } from 'react-native';
-import styles from './style';
 import * as ImagePicker from 'react-native-image-picker';
 import DatePicker from 'react-native-datepicker';
+import stringText from '../components/string';
+import Colours from '../components/colours';
+import styles from './style';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -39,10 +42,8 @@ class Profile extends React.Component {
     };
 
     ImagePicker.launchImageLibrary(options, res => {
-
-
       if (res.didCancel) {
-        Alert.alert('Cancelled');
+        Alert.alert(stringText.alertText);
       } else if (res.errorMessage) {
       } else {
         let source = res;
@@ -68,8 +69,6 @@ class Profile extends React.Component {
         body: JSON.stringify(profileDetails),
       })
         .then(response => response.json())
-        .then(profileDetails => {
-        })
         .catch(error => {
           const msg = this.fetchErrorMessage(error);
         });
@@ -77,47 +76,43 @@ class Profile extends React.Component {
 
   fetchErrorMessage(error) {
     if (
-      (error.response && error.response.status === 502) ||
-      (error.response && error.response.status === 500)
+      (error.response && error.response.status === stringText.HTTP_ERROR1) ||
+      (error.response && error.response.status === stringText.HTTP_ERROR2)
     ) {
-      return "error";
+      return stringText.ERROR_Return1;
     } else if (
       error.response &&
-      error.response.status === 400
+      error.response.status === stringText.HTTP_ERROR3
     ) {
-      return "Access error";
+      return stringText.ERROR_Return2;
     }
     return error.response && error.response.data
       ? error.response.data.error_description
-      : "check network";
+      : stringText.ERROR_Return3;
   }
 
   render() {
     return (
       <View style={styles.container}>
+        <Text style={styles.welcome}> {stringText.welcome} </Text>
         <TouchableOpacity
           style={styles.image}
           onPress={this.selectFile}>
-          {this.state.photo === null ? (
             <Image
-              source={require('../../src/screens/proimg.png')}
+              source={this.state.photo
+              ? {uri: this.state.photo.uri}
+            : require('../assets/proimg.png')
+          }
               style={styles.imageSquare}
               resizeMode="cover"
             />
-          ) : (
-            <Image
-              source={{ uri: this.state.photo.uri }}
-              style={styles.imageSquare}
-              resizeMode="cover"
-            />
-          )}
         </TouchableOpacity>
 
 
         <View style={styles.body}>
           <TextInput
-            placeholder="First Name"
-            placeholderTextColor="#283747"
+            placeholder={stringText.firstName}
+            placeholderTextColor={Colours.placeHolder}
             style={styles.inputText}
             onChangeText={name => {
               this.setState({ name: name }, () => { });
@@ -127,8 +122,8 @@ class Profile extends React.Component {
 
         <View style={styles.body}>
           <TextInput
-            placeholder="Last Name"
-            placeholderTextColor="#283747"
+            placeholder={stringText.lastName}
+            placeholderTextColor={Colours.placeHolder}
             style={styles.inputText}
             onChangeText={name2 => {
               this.setState({ name2: name2 }, () => { });
@@ -139,10 +134,10 @@ class Profile extends React.Component {
           <DatePicker
             date={this.state.date}
             mode="date"
-            placeholder="date-of-birth"
-            format="YYYY-MM-DD"
-            maxDate="2021-06-01"
-            style={{ width: 280 }}
+            placeholder={stringText.dateText}
+            format={stringText.dateFormat}
+            maxDate={new Date()}
+            style={{ width: 347 }}
             customStyles={{
               dateIcon: {
                 position: 'absolute',
@@ -161,7 +156,7 @@ class Profile extends React.Component {
 
         <Button
           onPress={this.onSubmit}
-          title="Submit"
+          title={stringText.submitButton}
         />
       </View>
     );
