@@ -1,3 +1,3 @@
 export const iconImage ={
-    HomeImage: require('../assets/image.jpg'),
+    HomeImage: require('../assets/mhk.jpeg'),
 };
