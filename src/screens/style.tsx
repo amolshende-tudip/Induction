@@ -32,15 +32,6 @@ const styles = StyleSheet.create({
     borderRadius: 13,
   },
 
-  inputText: {
-    flex: 1,
-    paddingVertical: 5,
-    paddingHorizontal: 20,
-    backgroundColor: Colours.liteBlue,
-    borderRadius: 13,
-    textAlign: 'center',
-  },
-
   submitButton: {
     marginTop: 30,
     backgroundColor: '#3498DB',

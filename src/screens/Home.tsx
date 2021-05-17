@@ -2,17 +2,16 @@ import React from 'react';
 import {
   View,
   Image,
-  TextInput,
   TouchableOpacity,
   Alert,
-  Text
 } from 'react-native';
 import * as ImagePicker from 'react-native-image-picker';
 import DatePicker from 'react-native-datepicker';
 import stringText from '../utility/string';
-import Colours from '../utility/colours';
 import styles from './style';
-import {iconImage} from '../assets/icon';
+import { iconImage } from '../assets/icon';
+import InputText from '../components/textInput';
+import HomeButton from '../components/Button';
 
 class Home extends React.Component {
   constructor(props) {
@@ -110,10 +109,8 @@ class Home extends React.Component {
 
 
         <View style={styles.body}>
-          <TextInput
+          <InputText
             placeholder={stringText.firstName}
-            placeholderTextColor={Colours.placeHolder}
-            style={styles.inputText}
             onChangeText={name => {
               this.setState({ name: name }, () => { });
             }}
@@ -121,10 +118,8 @@ class Home extends React.Component {
         </View>
 
         <View style={styles.body}>
-          <TextInput
+          <InputText
             placeholder={stringText.lastName}
-            placeholderTextColor={Colours.placeHolder}
-            style={styles.inputText}
             onChangeText={name2 => {
               this.setState({ name2: name2 }, () => { });
             }}
@@ -143,11 +138,9 @@ class Home extends React.Component {
             }} />
         </View>
 
-        <TouchableOpacity
-          style={styles.submitButton}
-          onPress={this.Submit}>
-          <Text style={styles.submitText}> {stringText.submit} </Text>
-        </TouchableOpacity>
+        <HomeButton
+          onPress={this.Submit}
+          title={stringText.submit} />
       </View>
     );
   }
