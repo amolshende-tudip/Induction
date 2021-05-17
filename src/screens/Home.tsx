@@ -15,7 +15,7 @@ class Home extends React.Component {
     this.state = {
       first: '',
       last: '',
-      photo: '',
+      img: '',
       date: '',
       check: false,
     };
@@ -32,17 +32,15 @@ class Home extends React.Component {
       ],
       storageOptions: {
         path: 'Computer',
-        skipBackup: true, 
+        skipBackup: true,
       },
     };
 
     ImagePicker.launchImageLibrary(choice, res => {
-      if (res.didCancel) 
-      {
+      if (res.didCancel) {
         Alert.alert(stringText.alertText);
       }
-      else 
-      {
+      else {
         let source = res;
         this.setState({
           photo: source,
@@ -52,51 +50,50 @@ class Home extends React.Component {
   };
 
   Submit = () => {
-    if(
+    if (
       this.state.first == '' ||
       this.state.last == '' ||
-      this.state.date == ''
+      this.state.date == '' ||
+      this.state.img == ''
     ) {
       Alert.alert(stringText.afterSubmit);
     } else {
       var HomeData = {};
-      HomeData.photo = this.state.photo,
-      HomeData.first = this.state.first,
-      HomeData.last = this.state.last,
-      HomeData.date = this.state.date,
+      HomeData.img = this.state.img,
+        HomeData.first = this.state.first,
+        HomeData.last = this.state.last,
+        HomeData.date = this.state.date,
 
-      fetch(Constant.baseURL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(HomeData),
-      })
-        .then(response => response.json())
-        .catch(error => {
-          const reply = this.ErrorMsg(error);
-          Alert.alert(reply);
-        });
-    } 
+        fetch(Constant.baseURL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(HomeData),
+        })
+          .then(response => response.json())
+          .catch(error => {
+            const reply = this.ErrorMsg(error);
+            Alert.alert(reply);
+          });
+    }
   };
 
   ErrorMsg(error) {
     if (
       (error.response && error.response.status === Constant.BAD_GATEWAY_ERROR) ||
       (error.response && error.response.status === Constant.SERVER_ERROR)
-    ) 
-    {
+    ) {
       return stringText.REQ_NOT_PROCESS;
-    } 
+    }
     else if (
       error.response && error.response.status === Constant.CLIENT_ERROR
-    ) 
-    {
+    ) {
       return stringText.ACCESS_DENIED;
     }
-    return error.response && error.response.data ? 
-           error.response.data.error_description : 
-           stringText.CHECK_CONNECTION;
+    return error.response && error.response.data ?
+      error.response.data.error_description :
+      stringText.CHECK_CONNECTION;
   }
 
   render() {
@@ -106,13 +103,14 @@ class Home extends React.Component {
           style={styles.image}
           onPress={this.chooseImage}>
           <Image
-            source={this.state.photo
-              ? { uri: this.state.photo.uri }
+            source={this.state.img
+              ? { uri: this.state.img.uri }
               : iconImage.HomeImage
             }
             style={styles.imageSquare}
             resizeMode="cover" />
         </TouchableOpacity>
+
 
         <View style={styles.body}>
           <InputText
