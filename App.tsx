@@ -1,9 +1,9 @@
 import React from 'react';
-import Profile from './src/screens/Profile'
+import Home from './src/screens/Home';
 
 const App = () => {
     return(
-        <Profile />
+        <Home />
     );
 };
 

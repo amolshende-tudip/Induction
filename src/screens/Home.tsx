@@ -4,17 +4,17 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
-  Button,
   Alert,
   Text
 } from 'react-native';
 import * as ImagePicker from 'react-native-image-picker';
 import DatePicker from 'react-native-datepicker';
-import stringText from '../components/string';
-import Colours from '../components/colours';
+import stringText from '../utility/string';
+import Colours from '../utility/colours';
 import styles from './style';
+import {iconImage} from '../assets/icon';
 
-class Profile extends React.Component {
+class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,13 +26,13 @@ class Profile extends React.Component {
     };
   }
 
-  selectFile = () => {
+  chooseImage = () => {
     var options = {
-      title: 'Select Image',
+      title: stringText.selectImg,
       customButtons: [
         {
-          name: 'customOptionKey',
-          title: 'Select Image',
+          name: stringText.clientKey,
+          title: stringText.selectImg,
         },
       ],
       storageOptions: {
@@ -44,8 +44,8 @@ class Profile extends React.Component {
     ImagePicker.launchImageLibrary(options, res => {
       if (res.didCancel) {
         Alert.alert(stringText.alertText);
-      } else if (res.errorMessage) {
-      } else {
+      }
+      else {
         let source = res;
         this.setState({
           photo: source,
@@ -54,7 +54,7 @@ class Profile extends React.Component {
     });
   };
 
-  onSubmit = () => {
+  Submit = () => {
     var profileDetails = {};
     profileDetails.photo = this.state.photo,
       profileDetails.name = this.state.name,
@@ -70,42 +70,42 @@ class Profile extends React.Component {
       })
         .then(response => response.json())
         .catch(error => {
-          const msg = this.fetchErrorMessage(error);
+          const msg = this.ErrorMsg(error);
+          Alert.alert(msg);
         });
   };
 
-  fetchErrorMessage(error) {
+  ErrorMsg(error) {
     if (
-      (error.response && error.response.status === stringText.HTTP_ERROR1) ||
-      (error.response && error.response.status === stringText.HTTP_ERROR2)
+      (error.response && error.response.status === stringText.BAD_GATEWAY_ERROR) ||
+      (error.response && error.response.status === stringText.SERVER_ERROR)
     ) {
-      return stringText.ERROR_Return1;
+      return stringText.REQ_NOT_PROCESS;
     } else if (
       error.response &&
-      error.response.status === stringText.HTTP_ERROR3
+      error.response.status === stringText.CLIENT_ERROR
     ) {
-      return stringText.ERROR_Return2;
+      return stringText.ACCESS_DENIED;
     }
     return error.response && error.response.data
       ? error.response.data.error_description
-      : stringText.ERROR_Return3;
+      : stringText.CHECK_CONNECTION;
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}> {stringText.welcome} </Text>
         <TouchableOpacity
           style={styles.image}
-          onPress={this.selectFile}>
-            <Image
-              source={this.state.photo
-              ? {uri: this.state.photo.uri}
-            : require('../assets/proimg.png')
-          }
-              style={styles.imageSquare}
-              resizeMode="cover"
-            />
+          onPress={this.chooseImage}>
+          <Image
+            source={this.state.photo
+              ? { uri: this.state.photo.uri }
+              : iconImage.HomeImage
+            }
+            style={styles.imageSquare}
+            resizeMode="cover"
+          />
         </TouchableOpacity>
 
 
@@ -137,29 +137,19 @@ class Profile extends React.Component {
             placeholder={stringText.dateText}
             format={stringText.dateFormat}
             maxDate={new Date()}
-            style={{ width: 347 }}
-            customStyles={{
-              dateIcon: {
-                position: 'absolute',
-                left: 0,
-                top: 4,
-                marginLeft: 0,
-              },
-              dateInput: {
-                marginLeft: 36,
-              },
-            }}
+            style={styles.birthDate}
             onDateChange={date => {
               this.setState({ date: date });
             }} />
         </View>
 
-        <Button
-          onPress={this.onSubmit}
-          title={stringText.submitButton}
-        />
+        <TouchableOpacity
+          style={styles.submitButton}
+          onPress={this.Submit}>
+          <Text style={styles.submitText}> {stringText.submit} </Text>
+        </TouchableOpacity>
       </View>
     );
   }
 }
-export default Profile;
+export default Home;

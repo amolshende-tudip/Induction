@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import Colours from '../components/colours';
+import Colours from '../utility/colours';
 
 const styles = StyleSheet.create({
   container: {
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   imageSquare: {
     width: 140,
     height: 140,
-    backgroundColor: Colours.imageSquare,
+
   },
 
   body: {
@@ -29,24 +29,39 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     borderWidth: 1,
     borderColor: Colours.imageColor,
-    borderRadius: 10,
+    borderRadius: 13,
   },
 
   inputText: {
     flex: 1,
     paddingVertical: 5,
     paddingHorizontal: 20,
-    backgroundColor: Colours.imageSquare,
-    borderRadius: 10,
+    backgroundColor: Colours.liteBlue,
+    borderRadius: 13,
+    textAlign: 'center',
   },
 
-  welcome: {
-    fontSize: 25, 
-    color: "black", 
-    padding: 10,
-    fontWeight: 'bold',
-    marginBottom: 30,
-  }
+  submitButton: {
+    marginTop: 30,
+    backgroundColor: '#3498DB',
+    width: 150,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 15,
+    color: 'blue'
+  },
+
+  submitText: {
+    fontSize: 20,
+    color: Colours.black,
+  },
+
+  birthDate: {
+    width: 347,
+    backgroundColor: Colours.dateText,
+    borderRadius: 13,
+  },
 
 });
 
