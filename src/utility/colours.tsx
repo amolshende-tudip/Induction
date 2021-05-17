@@ -6,6 +6,7 @@ const Colours={
     black: 'black',
     white: 'white',
     dateText: '#FAF2DF',
+    blueSubmit: '#3498DB',
 }
 
 export default Colours;

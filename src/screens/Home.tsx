@@ -12,13 +12,14 @@ import styles from './style';
 import { iconImage } from '../assets/icon';
 import InputText from '../components/textInput';
 import HomeButton from '../components/Button';
+import { Constant } from '../utility/constants';
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      name2: '',
+      first: '',
+      last: '',
       photo: '',
       date: '',
       check: false,
@@ -56,11 +57,11 @@ class Home extends React.Component {
   Submit = () => {
     var profileDetails = {};
     profileDetails.photo = this.state.photo,
-      profileDetails.name = this.state.name,
-      profileDetails.name2 = this.state.name2,
+      profileDetails.first = this.state.first,
+      profileDetails.last = this.state.last,
       profileDetails.date = this.state.date,
 
-      fetch('http://localhost:8090/profile/create', {
+      fetch(Constant.baseURL , {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -76,13 +77,13 @@ class Home extends React.Component {
 
   ErrorMsg(error) {
     if (
-      (error.response && error.response.status === stringText.BAD_GATEWAY_ERROR) ||
-      (error.response && error.response.status === stringText.SERVER_ERROR)
+      (error.response && error.response.status === Constant.BAD_GATEWAY_ERROR) ||
+      (error.response && error.response.status === Constant.SERVER_ERROR)
     ) {
       return stringText.REQ_NOT_PROCESS;
     } else if (
       error.response &&
-      error.response.status === stringText.CLIENT_ERROR
+      error.response.status === Constant.CLIENT_ERROR
     ) {
       return stringText.ACCESS_DENIED;
     }
@@ -111,8 +112,8 @@ class Home extends React.Component {
         <View style={styles.body}>
           <InputText
             placeholder={stringText.firstName}
-            onChangeText={name => {
-              this.setState({ name: name }, () => { });
+            onChangeText={first => {
+              this.setState({ first: first }, () => { });
             }}
           />
         </View>
@@ -120,8 +121,8 @@ class Home extends React.Component {
         <View style={styles.body}>
           <InputText
             placeholder={stringText.lastName}
-            onChangeText={name2 => {
-              this.setState({ name2: name2 }, () => { });
+            onChangeText={last => {
+              this.setState({ last: last }, () => { });
             }}
           />
         </View>
@@ -130,7 +131,7 @@ class Home extends React.Component {
             date={this.state.date}
             mode="date"
             placeholder={stringText.dateText}
-            format={stringText.dateFormat}
+            format={Constant.dateFormat}
             maxDate={new Date()}
             style={styles.birthDate}
             onDateChange={date => {

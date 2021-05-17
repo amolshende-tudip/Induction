@@ -1,7 +1,7 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 import Colours from '../utility/colours';
 
-export const styles = StyleSheet.create({
+export const styles =StyleSheet.create({
     inputText: {
         flex: 1,
         paddingVertical: 5,
@@ -9,21 +9,21 @@ export const styles = StyleSheet.create({
         backgroundColor: Colours.liteBlue,
         borderRadius: 13,
         textAlign: 'center',
-    },
+      },
 
-    submitButton: {
+      submitButton: {
         marginTop: 30,
-        backgroundColor: '#3498DB',
+        backgroundColor: Colours.blueSubmit,
         width: 150,
         height: 50,
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 15,
         color: 'blue'
-    },
+      },
 
-    submitText: {
+      submitText: {
         fontSize: 20,
         color: Colours.black,
-    },
+      },
 })
