@@ -22,7 +22,7 @@ class Home extends React.Component {
   }
 
   chooseImage = () => {
-    var options = {
+    var choice = {
       title: stringText.selectImg,
       customButtons: [
         {
@@ -31,16 +31,18 @@ class Home extends React.Component {
         },
       ],
       storageOptions: {
-        skipBackup: true,
-        path: 'images',
+        path: 'Computer',
+        skipBackup: true, 
       },
     };
 
-    ImagePicker.launchImageLibrary(options, res => {
-      if (res.didCancel) {
+    ImagePicker.launchImageLibrary(choice, res => {
+      if (res.didCancel) 
+      {
         Alert.alert(stringText.alertText);
       }
-      else {
+      else 
+      {
         let source = res;
         this.setState({
           photo: source,
@@ -72,8 +74,8 @@ class Home extends React.Component {
       })
         .then(response => response.json())
         .catch(error => {
-          const msg = this.ErrorMsg(error);
-          Alert.alert(msg);
+          const reply = this.ErrorMsg(error);
+          Alert.alert(reply);
         });
     } 
   };
@@ -82,17 +84,19 @@ class Home extends React.Component {
     if (
       (error.response && error.response.status === Constant.BAD_GATEWAY_ERROR) ||
       (error.response && error.response.status === Constant.SERVER_ERROR)
-    ) {
+    ) 
+    {
       return stringText.REQ_NOT_PROCESS;
-    } else if (
-      error.response &&
-      error.response.status === Constant.CLIENT_ERROR
-    ) {
+    } 
+    else if (
+      error.response && error.response.status === Constant.CLIENT_ERROR
+    ) 
+    {
       return stringText.ACCESS_DENIED;
     }
-    return error.response && error.response.data
-      ? error.response.data.error_description
-      : stringText.CHECK_CONNECTION;
+    return error.response && error.response.data ? 
+           error.response.data.error_description : 
+           stringText.CHECK_CONNECTION;
   }
 
   render() {
@@ -107,18 +111,15 @@ class Home extends React.Component {
               : iconImage.HomeImage
             }
             style={styles.imageSquare}
-            resizeMode="cover"
-          />
+            resizeMode="cover" />
         </TouchableOpacity>
-
 
         <View style={styles.body}>
           <InputText
             placeholder={stringText.firstName}
             onChangeText={first => {
               this.setState({ first: first }, () => { });
-            }}
-          />
+            }} />
         </View>
 
         <View style={styles.body}>
@@ -126,9 +127,9 @@ class Home extends React.Component {
             placeholder={stringText.lastName}
             onChangeText={last => {
               this.setState({ last: last }, () => { });
-            }}
-          />
+            }} />
         </View>
+
         <View style={styles.dateBody}>
           <DatePicker
             date={this.state.date}
