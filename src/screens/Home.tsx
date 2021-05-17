@@ -61,7 +61,7 @@ class Home extends React.Component {
       profileDetails.last = this.state.last,
       profileDetails.date = this.state.date,
 
-      fetch(Constant.baseURL , {
+      fetch(Constant.baseURL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,4 +1,4 @@
-const stringText ={
+const stringText = {
     alertText: 'Cancelled',
     firstName: 'First Name',
     lastName: 'Last Name',

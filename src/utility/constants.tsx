@@ -4,4 +4,4 @@ export const Constant = {
     SERVER_ERROR: 500,
     CLIENT_ERROR: 400,
     dateFormat: 'YYYY-MM-DD',
-  };
+};
