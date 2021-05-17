@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Image,
-  TouchableOpacity,
-  Alert,
-} from 'react-native';
+import { View, Image, TouchableOpacity, Alert } from 'react-native';
 import * as ImagePicker from 'react-native-image-picker';
 import DatePicker from 'react-native-datepicker';
 import stringText from '../utility/string';
@@ -55,7 +50,14 @@ class Home extends React.Component {
   };
 
   Submit = () => {
-    var profileDetails = {};
+    if(
+      this.state.first == '' ||
+      this.state.last == '' ||
+      this.state.date == ''
+    ) {
+      Alert.alert(stringText.afterSubmit);
+    } else {
+      var profileDetails = {};
     profileDetails.photo = this.state.photo,
       profileDetails.first = this.state.first,
       profileDetails.last = this.state.last,
@@ -73,6 +75,7 @@ class Home extends React.Component {
           const msg = this.ErrorMsg(error);
           Alert.alert(msg);
         });
+    } 
   };
 
   ErrorMsg(error) {
@@ -126,7 +129,7 @@ class Home extends React.Component {
             }}
           />
         </View>
-        <View style={styles.body}>
+        <View style={styles.dateBody}>
           <DatePicker
             date={this.state.date}
             mode="date"

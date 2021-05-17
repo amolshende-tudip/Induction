@@ -3,12 +3,10 @@ import Colours from '../utility/colours';
 
 export const styles =StyleSheet.create({
     inputText: {
-        flex: 1,
-        paddingVertical: 5,
-        paddingHorizontal: 20,
-        backgroundColor: Colours.liteBlue,
-        borderRadius: 13,
-        textAlign: 'center',
+      height: 50,
+      flex: 1,
+      padding: 10,
+      marginLeft: 20,
       },
 
       submitButton: {
@@ -19,7 +17,7 @@ export const styles =StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 15,
-        color: 'blue'
+        color: Colours.blue
       },
 
       submitText: {

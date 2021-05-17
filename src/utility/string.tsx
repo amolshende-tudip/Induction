@@ -11,6 +11,7 @@ const stringText = {
     selectImg: 'Choose Image',
     submit: 'Submit',
     clientKey: 'ClientKey',
+    afterSubmit: 'All fields required',
 };
 
 export default stringText;

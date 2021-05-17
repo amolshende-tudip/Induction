@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
 
   image: {
     borderColor: Colours.imageColor,
-    borderWidth: 1,
     width: 140,
     height: 140,
     marginBottom: 40
@@ -20,24 +19,41 @@ const styles = StyleSheet.create({
   imageSquare: {
     width: 140,
     height: 140,
-
+    borderRadius: 13,
   },
 
   body: {
+    backgroundColor: Colours.textInputBox,
+    borderRadius: 30,
+    width: "70%",
+    height: 45,
+    marginBottom: 20,
+    alignItems: "center",
+  },
+
+  birthDate: {
+    width: 270,
+    backgroundColor: Colours.dateText,
+  },
+
+  dateBody: {
     flexDirection: 'row',
     marginHorizontal: 20,
     marginVertical: 10,
-    borderWidth: 1,
     borderColor: Colours.imageColor,
     borderRadius: 13,
   },
 
-  birthDate: {
-    width: 347,
-    backgroundColor: Colours.dateText,
-    borderRadius: 13,
+  dateIcon: {
+    position: 'absolute',
+    left: 0,
+    top: 4,
+    marginLeft: 0
   },
 
+  dateInput: {
+    marginLeft: 36
+  }
 });
 
 export default styles;
