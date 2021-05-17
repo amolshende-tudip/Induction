@@ -13,35 +13,21 @@ const styles = StyleSheet.create({
     borderColor: Colours.imageColor,
     width: 140,
     height: 140,
-    marginBottom: 80
+    marginBottom: 40
   },
 
   imageSquare: {
     width: 140,
     height: 140,
     borderRadius: 13,
-    marginTop: 50
-  },
-
-  bodyContainer: {
-    flex: 2,
-    borderTopLeftRadius: 40,
-    borderTopRightRadius: 40,
-    paddingHorizontal: 40,
-    paddingVertical: 30,
-    backgroundColor: Colours.white,
   },
 
   body: {
     backgroundColor: Colours.textInputBox,
-    flexDirection: 'row',
-    width: "87%",
-    height: 45,
-    borderWidth: 1,
     borderRadius: 30,
+    width: "70%",
+    height: 45,
     marginBottom: 20,
-    marginHorizontal: 20,
-    marginVertical: 10,
   },
 
   birthDate: {
@@ -66,7 +52,7 @@ const styles = StyleSheet.create({
 
   dateInput: {
     marginLeft: 36
-  },
+  }
 });
 
 export default styles;

@@ -6,7 +6,7 @@ const Colours = {
     black: 'black',
     white: 'white',
     dateText: '#FAF2DF',
-    blueSubmit: '#3498DB',
+    blueSubmit: '#FAF860',
     blue: 'blue',
     textInputBox: '#FFC0CB'
 };

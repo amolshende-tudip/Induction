@@ -7,23 +7,22 @@ export const styles =StyleSheet.create({
       flex: 1,
       padding: 10,
       marginLeft: 20,
-      fontSize: 15,
       },
 
       submitButton: {
-        marginTop: 50,
+        marginTop: 30,
         backgroundColor: Colours.blueSubmit,
         width: 150,
         height: 50,
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 15,
-        color: Colours.blue,
-        marginLeft: 75,
+        color: Colours.blue
       },
 
       submitText: {
-        fontSize: 23,
+        fontSize: 20,
         color: Colours.black,
+        fontWeight: 'bold'
       },
 })
