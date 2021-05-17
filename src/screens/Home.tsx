@@ -17,8 +17,8 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      name2: '',
+      first: '',
+      last: '',
       photo: '',
       date: '',
       check: false,
@@ -56,8 +56,8 @@ class Home extends React.Component {
   Submit = () => {
     var profileDetails = {};
     profileDetails.photo = this.state.photo,
-      profileDetails.name = this.state.name,
-      profileDetails.name2 = this.state.name2,
+      profileDetails.first = this.state.first,
+      profileDetails.last = this.state.last,
       profileDetails.date = this.state.date,
 
       fetch('http://localhost:8090/profile/create', {
@@ -111,8 +111,8 @@ class Home extends React.Component {
         <View style={styles.body}>
           <InputText
             placeholder={stringText.firstName}
-            onChangeText={name => {
-              this.setState({ name: name }, () => { });
+            onChangeText={first => {
+              this.setState({ first: first }, () => { });
             }}
           />
         </View>
@@ -120,8 +120,8 @@ class Home extends React.Component {
         <View style={styles.body}>
           <InputText
             placeholder={stringText.lastName}
-            onChangeText={name2 => {
-              this.setState({ name2: name2 }, () => { });
+            onChangeText={last => {
+              this.setState({ last: last }, () => { });
             }}
           />
         </View>
