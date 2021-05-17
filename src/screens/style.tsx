@@ -32,22 +32,6 @@ const styles = StyleSheet.create({
     borderRadius: 13,
   },
 
-  submitButton: {
-    marginTop: 30,
-    backgroundColor: '#3498DB',
-    width: 150,
-    height: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 15,
-    color: 'blue'
-  },
-
-  submitText: {
-    fontSize: 20,
-    color: Colours.black,
-  },
-
   birthDate: {
     width: 347,
     backgroundColor: Colours.dateText,
