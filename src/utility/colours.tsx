@@ -1,6 +1,6 @@
 const Colours = {
     imageColor: "black",
-    backColor: "#D2F9FA",
+    backColor: "#628DF8",
     liteBlue: "#B4F6F4",
     placeHolder: "black",
     black: 'black',

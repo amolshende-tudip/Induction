@@ -112,6 +112,7 @@ class Home extends React.Component {
         </TouchableOpacity>
 
 
+        <View style={styles.bodyContainer}>
         <View style={styles.body}>
           <InputText
             placeholder={stringText.firstName}
@@ -144,6 +145,7 @@ class Home extends React.Component {
         <HomeButton
           onPress={this.Submit}
           title={stringText.submit} />
+      </View>
       </View>
     );
   }
