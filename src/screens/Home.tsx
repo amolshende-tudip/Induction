@@ -57,18 +57,18 @@ class Home extends React.Component {
     ) {
       Alert.alert(stringText.afterSubmit);
     } else {
-      var profileDetails = {};
-    profileDetails.photo = this.state.photo,
-      profileDetails.first = this.state.first,
-      profileDetails.last = this.state.last,
-      profileDetails.date = this.state.date,
+      var HomeData = {};
+      HomeData.photo = this.state.photo,
+      HomeData.first = this.state.first,
+      HomeData.last = this.state.last,
+      HomeData.date = this.state.date,
 
       fetch(Constant.baseURL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(profileDetails),
+        body: JSON.stringify(HomeData),
       })
         .then(response => response.json())
         .catch(error => {
